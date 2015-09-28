@@ -22,5 +22,25 @@ namespace util {
 	{
 		return x & 0xff;
 	}
+
+	inline uint32_t q0toint32(uint8_t x)
+	{
+		return x << 24;
+	}
+
+	inline uint32_t q1toint32(uint8_t x)
+	{
+		return x << 16;
+	}
+
+	inline uint32_t q2toint32(uint8_t x)
+	{
+		return x << 8;
+	}
+
+	inline uint32_t q3toint32(uint8_t x)
+	{
+		return x;
+	}
 }
 

@@ -48,7 +48,27 @@ uint32_t KCipher2::State::zh() const
 
 uint32_t KCipher2::sub(uint32_t x)
 {
+#ifdef USE_KCIPHER2_AES_SBOX
+	const uint8_t result[] = {
+		sbox[util::int32toq3(x)],
+		sbox[util::int32toq2(x)],
+		sbox[util::int32toq1(x)],
+		sbox[util::int32toq0(x)]
+	};
+	const uint8_t mul2[] = {
+		sbox.mul(result[0], 2),
+		sbox.mul(result[1], 2),
+		sbox.mul(result[2], 2),
+		sbox.mul(result[3], 2)
+	};
+	return
+		util::q3toint32(mul2[0] ^ result[3] ^ result[2] ^ mul2[1] ^ result[1]) ^
+		util::q2toint32(mul2[1] ^ result[0] ^ result[3] ^ mul2[2] ^ result[2]) ^
+		util::q1toint32(mul2[2] ^ result[1] ^ result[0] ^ mul2[3] ^ result[3]) ^
+		util::q0toint32(mul2[3] ^ result[2] ^ result[1] ^ mul2[0] ^ result[0]);
+#else
 	return table[0][util::int32toq3(x)] ^ table[1][util::int32toq2(x)] ^ table[2][util::int32toq1(x)] ^ table[3][util::int32toq0(x)];
+#endif
 }
 
 template <bool IsInit>

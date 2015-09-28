@@ -4,6 +4,9 @@
 #include <memory>
 #include <utility>
 #include <iostream>
+#include "AesSbox.h"
+
+#define USE_KCIPHER2_AES_SBOX
 
 class KCipher2
 {
@@ -27,7 +30,11 @@ private:
 
 	static const Rcon rcon;
 	static const Amul amul[4];
+#ifdef USE_KCIPHER2_AES_SBOX
+	static const AesSbox sbox;
+#else
 	static const Ttable table[4];
+#endif
 
 	struct State {
 		RegA reg_a;

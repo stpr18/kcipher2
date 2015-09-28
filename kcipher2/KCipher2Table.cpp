@@ -268,7 +268,9 @@ const KCipher2::Amul KCipher2::amul[] = {
 		0xC73FBF17,0x8266E99C,0x4D8D1364,0x08D445EF
 	}
 };
-
+#ifdef USE_KCIPHER2_AES_SBOX
+const AesSbox KCipher2::sbox;
+#else
 const KCipher2::Ttable KCipher2::table[] = {
 	{
 		0xA56363C6,0x847C7CF8,0x997777EE,0x8D7B7BF6,
@@ -535,3 +537,4 @@ const KCipher2::Ttable KCipher2::table[] = {
 		0x7BCBB0B0,0xA8FC5454,0x6DD6BBBB,0x2C3A1616,
 	}
 };
+#endif
