@@ -94,7 +94,7 @@ void KCipher2::next(State *old_state, State *new_state)
 	new_state->reg_l[1] = sub(old_state->reg_l[0]);
 }
 
-void KCipher2::load_initial_key(const InitKey ik, const InitVec iv)
+void KCipher2::load_initial_key(const InitKey& ik, const InitVec& iv)
 {
 	load_initial_key(ik.data(), iv.data());
 }

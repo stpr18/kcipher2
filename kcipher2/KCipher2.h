@@ -87,7 +87,7 @@ public:
 
 	~KCipher2() = default;
 
-	void load_initial_key(const InitKey ik, const InitVec iv);
+	void load_initial_key(const InitKey& ik, const InitVec& iv);
 	void load_initial_key(const uint32_t ik[], const uint32_t iv[]);
 	void next();
 	void get_stream(KeyStream & stream);
